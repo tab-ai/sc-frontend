@@ -43,5 +43,5 @@ npm run build
 
 ```
 build 폴더를 /opt/sc-servers/sc-project/ 에 이동
-build 폴더에서 icon 폴더를 static 폴더 내부로로 이동
+build 폴더에서 icon 폴더를 static 폴더 내부로 이동
 ```
