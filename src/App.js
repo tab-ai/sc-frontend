@@ -1,51 +1,37 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import './index.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import PrimarySearchAppBar from './components/header/Header';
+import DashboardAPI from './components/dashboard/DashboardAPI';
+import blue from '@material-ui/core/colors/blue';
+import pink from '@material-ui/core/colors/pink';
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
-const list = [
-  {
-    'id': 1,
-    'title': '1st Item',
-    'description': 'Description here.'
+// material-ui main theme
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: pink,
   },
-  {
-    'id': 2,
-    'title': '2nd Item',
-    'description': 'Another description here.'
+  typography: {
+    useNextVariants: true,
   },
-  {
-    'id': 3,
-    'title': '3rd Item',
-    'description': 'Third description here.'
-  }
-];
+});
 
-axios.get('/api/farm_01/dev/')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { list };
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.list.map(item => (
-          <div>
-            <h1>{item.title}</h1>
-            <span>{item.description}</span>
-          </div>
-        ))}
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <MuiThemeProvider theme={theme}>
+        <React.Fragment>
+          <PrimarySearchAppBar />
+            <React.Fragment>
+                <Route exact path="/" component={DashboardAPI} />
+            </React.Fragment>
+        </React.Fragment>
+      </MuiThemeProvider>
+    </Router>
+  );
 }
+
 
 export default App;

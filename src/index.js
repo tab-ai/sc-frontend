@@ -1,35 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import PrimarySearchAppBar from './PrimarySearchAppBar';
-//import SearchAppBar from './SearchAppBar';
-import TemporaryDrawer from './TemporaryDrawer.js';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import blue from '@material-ui/core/colors/blue';
-import pink from '@material-ui/core/colors/pink';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-
-
-const theme = createMuiTheme({
-  palette: {
-    primary: blue,
-    secondary: pink,
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-
-function App() {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <PrimarySearchAppBar />
-    </MuiThemeProvider>
-  );
-}
+import "typeface-roboto";
+import 'react-app-polyfill/ie9';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

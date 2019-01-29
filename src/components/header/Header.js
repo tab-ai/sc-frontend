@@ -4,23 +4,22 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+// import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import BluetoothIcon from '@material-ui/icons/Bluetooth'
 
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 
 
 const styles = theme => ({
@@ -28,17 +27,17 @@ const styles = theme => ({
     width: '100%',
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 10,
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
   list: {
-    width: 250,
+    width: 220,
   },
   title: {
-    display: 'none',
+    display: 'block',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -52,7 +51,7 @@ const styles = theme => ({
     },
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
-    width: '100%',
+    width: 'auto',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing.unit,
       width: 'auto',
@@ -78,10 +77,16 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
     width: '100%',
+    [theme.breakpoints.down('md')]: {
+      width: 120,
+      '&:focus': {
+       width: 160,
+      },
+    },
     [theme.breakpoints.up('md')]: {
       width: 120,
       '&:focus': {
-       width: 200,
+       width: 160,
       },
     },
   },
@@ -97,6 +102,21 @@ const styles = theme => ({
       display: 'none',
     },
   },
+// main container
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+//    height: '100vh',
+//    overflow: 'auto',
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  chartContainer: {
+    marginLeft: -22,
+  },
+  tableContainer: {
+    height: 320,
+  },
+
 });
 
 class PrimarySearchAppBar extends React.Component {
@@ -127,6 +147,7 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({
       [side]: open,
     });
+
   };
 
 
@@ -144,11 +165,12 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>설정</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>로그아웃</MenuItem>
       </Menu>
     );
 
+    // 모바일 메뉴
     const renderMobileMenu = (
       <Menu
         anchorEl={mobileMoreAnchorEl}
@@ -160,10 +182,10 @@ class PrimarySearchAppBar extends React.Component {
         <MenuItem>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
-              <MailIcon />
+              <BluetoothIcon />
             </Badge>
           </IconButton>
-          <p>Messages</p>
+          <p>블루투스</p>
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
@@ -171,13 +193,13 @@ class PrimarySearchAppBar extends React.Component {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <p>Notifications</p>
+          <p>알림</p>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <IconButton color="inherit">
             <AccountCircle />
           </IconButton>
-          <p>Profile</p>
+          <p>계정</p>
         </MenuItem>
       </Menu>
     );
@@ -195,25 +217,13 @@ class PrimarySearchAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h5" color="inherit" noWrap>
-              sc-server
+              스마트 축산 모니터링
             </Typography>
             <div className={classes.grow} />
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
                 <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
+                  <BluetoothIcon />
                 </Badge>
               </IconButton>
               <IconButton color="inherit">
@@ -244,15 +254,14 @@ class PrimarySearchAppBar extends React.Component {
           <div
             tabIndex={0}
             role="button"
+            onClick={this.toggleDrawer('left', false)}
             onKeyDown={this.toggleDrawer('left', false)}
           >
-          <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{secondaryListItems}</List>
+          <div className={classes.list}>
+            <List>{mainListItems}</List>
+          </div>
           </div>
         </Drawer>
-
       </div>
     );
   }
