@@ -18,7 +18,9 @@ npm install
 
 ```
 npm start를 하면 <라즈베리파이 주소>:3000 으로 들어가지기 때문에   
-api를 못불러와서 수정작업을해야함
+api를 못불러와서 수정작업을 해야함
+
+1. REST API 주소 변경
 src/components/dashboard/DashboardAPI.js
 src/components/dashboard/BpmBarChart.js
 src/components/dashboard/TempLineChart.js
@@ -26,8 +28,9 @@ src/components/dashboard/TempLineChart.js
 위의 axios 코드에서 <라즈베리파이 주소><원래 써있는 주소> 로 변경
 예시 : http://192.168.1.197/api/dashboard/?format=json
 
+2. 소 아이콘 주소 변경
 /src/components/dashboard/DashboardCard.js
-위의 코드에서 icon 관련 주소를 바꿔야 함 /static/icon/ 을 /icon/ 로 변경
+위의 코드에서 icon 관련 주소를 바꿔야 함 /static/icons/ 을 /icons/ 로 변경
 ```
 
 ### Development start
@@ -46,5 +49,5 @@ npm run build
 
 ```
 build 폴더를 /opt/sc-servers/sc-project/ 에 이동
-build 폴더에서 icon 폴더를 static 폴더 내부로 이동
+build 폴더에서 icons 폴더를 static 폴더 내부로 이동
 ```
